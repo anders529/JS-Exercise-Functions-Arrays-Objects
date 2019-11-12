@@ -243,18 +243,18 @@ function getGermanCars(/* code here */) {
  * @instructions
  * Create arrow function versions of the following commented-out functions:
  * 
- * const sum = function (a, b) {
- *   return a + b
- * }
- * 
- * const addFive = function(num) {
-*    return num + 5
- * }
- *
- * const argTimesTwo = function (num) {
- *   return num * 2
- * }
 */
+const sum = (a, b) => {
+  return a + b;
+}
+ 
+ const addFive = (num) => {
+    return num + 5;
+ }
+
+ const argTimesTwo = (num) => {
+   return num * 2;
+ }
 const sum = null; // code here!
 const addFive = null; // code here!
 const argTimesTwo = null; // code here!
