@@ -60,11 +60,11 @@ function makePersonObject(){
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName() {
+function getName(object) {
   const username = {
-    name
+    object
   }
-  return "Hello, my name is " + username.name;
+  return "Hello, my name is " + object.name;
 }
 
 /**
@@ -83,11 +83,11 @@ function getName() {
 function makeSmartPerson(name) {
     return {
       name,
-      function(){
-       const sum = 2 +2;
+      sum: function(num1, num2){
+       return num1 + num2;
       },
-      function(){
-       const speak = "something";
+      speak: function(){
+       return `Hello, my name is ${name}`;
       }
     }
 }
@@ -184,11 +184,7 @@ function getLastCarInfo() {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoById(inventory, id) {
-      for(let i = 0; i < inventory.length; i++){
-        if(inventory[i].id === id){
-          return `This is a ${inventory[i].car_make}${inventory[i].car_model}`
-        }
-      }
+     return `This is a ${inventory[id-1].car_make} ${inventory[id-1].car_model}`
 }
 
 /**
@@ -213,8 +209,8 @@ function sortCarInventory(inventory) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-  function getModelYears(inventory, years) {
-    // let years = [];
+  function getModelYears(inventory) {
+    let years = [];
     for (let i = 0; i < inventory.length; i++){
       years[i] = inventory[i].car_year
     }
@@ -256,7 +252,7 @@ function sortCarInventory(inventory) {
 */
     function getGermanCars(inventory) {
       let germanCars = [];
-      let germanMakes = ['Audi','Mercedes-Benz', 'Volkswagen', 'BMW']
+      let germanMakes = []
       for(let i = 0; i < inventory.length; i++) {
         if(germanMakes.includes)(inventory[i].car_make)
           germanCars.push(inventory[i])
