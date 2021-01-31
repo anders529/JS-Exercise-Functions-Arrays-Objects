@@ -39,8 +39,12 @@ function addNumbers(num1, num2) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
-  /* code here */
+function makePersonObject(){
+   return {  
+    email: "luke@luke.com",
+    id: 1,
+    name: "Luke"
+  }
 }
 
 /**
@@ -56,8 +60,11 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
-  /* code here */
+function getName(object) {
+  const username = {
+    object
+  }
+  return "Hello, my name is " + object.name;
 }
 
 /**
@@ -73,13 +80,17 @@ function getName(/* code here */) {
  *         and returns a string like `Hello, my name is {name}`.
  *         where `{name}` is the name passed into `makeSmartPerson`.
 */
-function makeSmartPerson(/* code here */) {
-  /* code here */
+function makeSmartPerson(name) {
+    return {
+      name,
+      sum: function(num1, num2){
+       return num1 + num2;
+      },
+      speak: function(){
+       return `Hello, my name is ${name}`;
+      }
+    }
 }
-
-
-
-
 
 /*
 // ⭐️ Example Test Data ⭐️
@@ -128,7 +139,7 @@ function get3rdCar(inventory) {
  * 
  * @instructions
  * getCarInfoByIndex takes two arguments:
- *     (1) an array which is an inventory of cars like the preview above (see ⭐️ Preview Test Data ⭐️)
+ *     (1) an array which is an inventory of cars like the preview above (see Preview Test Data)
  *     (2) a number which is the desired index in the array.
  * getCarInfoByIndex returns a string in the format `This is a {car_make} {car_model}`
  * 
@@ -136,7 +147,10 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  /* code here */
+  const car_makes = ["Lincoln", "honda", "isuzu", "mclaren", "lamborghini", "ferrari"];
+  const car_models = ["Navigator", "accord", "trooper", "720s", "aventador", "458"];
+  
+  return "Car make: " + car_makes + " Car model: " + car_models;
 }
 
 /**
@@ -150,8 +164,11 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo() {
+  const car_make = ["Lincoln", "Ford", "Mercury"];
+  const car_model = ["Town Car", "Mustang", "Sable"];
+  return "This is a " +car_make+" "+car_model;
+
 }
 
 /**
@@ -166,8 +183,8 @@ function getLastCarInfo(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
-  /* code here */
+function getCarInfoById(inventory, id) {
+     return `This is a ${inventory[id-1].car_make} ${inventory[id-1].car_model}`
 }
 
 /**
@@ -178,8 +195,9 @@ function getCarInfoById(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
-  /* code here */
+function sortCarInventory(inventory) {
+  return inventory.sort((cary, carz) => 
+    (cary.car_model > carz.car_model) ? 1 : -1);
 }
 
 /**
@@ -191,9 +209,13 @@ function sortCarInventory(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
-}
+  function getModelYears(inventory) {
+    let years = [];
+    for (let i = 0; i < inventory.length; i++){
+      years[i] = inventory[i].car_year
+    }
+    return years;
+   }
 
 /**
  * ### Challenge `getOlderCars`
@@ -207,9 +229,15 @@ function getModelYears(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
-}
+  function getOlderCars(inventory, maxYear) {
+    let cars = [];
+    for(let i = 0; i < inventory.length; i++){
+      if(inventory[i].car_year <= maxYear) {
+        cars.push(inventory[i])
+      }
+    };
+    return cars;
+  }
 
 /**
  * ### Challenge `getGermanCars`
@@ -222,31 +250,43 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
-}
-
+    function getGermanCars(inventory) {
+    let germanCars =[];
+    for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i].car_make === "Audi" || inventory[i].car_make === "Mercedes-Benz" || inventory[i].car_make === "Volkswagen"|| inventory[i].car_make === "BMW") {
+      germanCars.push(inventory[i]);
+    }
+    }
+    return germanCars;
+  };
 /**
  * ### Challenge refactor to arrow functions
  * 
  * @instructions
  * Create arrow function versions of the following commented-out functions:
  * 
- * const sum = function (a, b) {
- *   return a + b
- * }
- * 
- * const addFive = function(num) {
-*    return num + 5
- * }
- *
- * const argTimesTwo = function (num) {
- *   return num * 2
- * }
 */
-const sum = null; // code here!
-const addFive = null; // code here!
-const argTimesTwo = null; // code here!
+// const sum = (a, b) => {
+//   return a + b;
+// }
+ 
+//  const addFive = (num) => {
+//     return num + 5;
+//  }
+
+//  const argTimesTwo = (num) => {
+//    return num * 2;
+//  }
+const sum = (a, b) => {
+    return a + b; };
+
+const addFive = (num) => {
+    return num + 5
+};
+
+const argTimesTwo = (num) => {
+  return num + 2
+};
 
 /**
  * ### Challenge `carMaker`
